@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RestApp</string>
+    <string name="auth_failed">Username or password is incorrect!</string>
+    <string name="do_not_match">Passwords do not match!</string>
+    <string name="auth_register_success">User successfully registered!</string>
+    <string name="missing_data">Some fields are missing or empty!</string>
+
+
+</resources>

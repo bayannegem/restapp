@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "978036386639",
+    "firebase_url": "https://restapp-814ce.firebaseio.com",
+    "project_id": "restapp-814ce",
+    "storage_bucket": "restapp-814ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978036386639:android:3ebfa7943e72c5f6",
+        "android_client_info": {
+          "package_name": "com.example.user.restapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978036386639-0skrkcv4956ojsqqbn9draor6sf34ekp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user.restapp",
+            "certificate_hash": "5105b29ad664c0df5b50021b3714329d2b1eddd1"
+          }
+        },
+        {
+          "client_id": "978036386639-rs43leo6pgf32bg0ggcaqce1guolvm7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_Xceh3JdJV0eLuvOe8Q1q77u0dWqNYNw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978036386639-rs43leo6pgf32bg0ggcaqce1guolvm7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
