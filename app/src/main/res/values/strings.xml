@@ -4,6 +4,7 @@
     <string name="do_not_match">Passwords do not match!</string>
     <string name="auth_register_success">User successfully registered!</string>
     <string name="missing_data">Some fields are missing or empty!</string>
+    <string name="add_rest_success">You have successfully added a restaurant!</string>
 
 
 </resources>

@@ -75,6 +75,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
         {
             Restaurant rest = new Restaurant(name, desc, phone ,web, face, whats, locate);
             restsRef.push().setValue(rest);
+            Toast.makeText(this, R.string.add_rest_success, Toast.LENGTH_SHORT).show();
         }
         else
         {

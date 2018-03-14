@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".AddRestaurantActivity"></activity>
+        <activity android:name=".AddRestaurantActivity" />
+        <activity android:name=".AllRestaurants" />
+        <activity android:name=".RestFeedActivity"></activity>
     </application>
 
 </manifest>

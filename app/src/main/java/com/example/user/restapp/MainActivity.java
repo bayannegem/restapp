@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                         //Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                        Intent i = new Intent(MainActivity.this, AddRestaurantActivity.class);
+                        Intent i = new Intent(MainActivity.this, RestFeedActivity.class);
                         startActivity(i);
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
