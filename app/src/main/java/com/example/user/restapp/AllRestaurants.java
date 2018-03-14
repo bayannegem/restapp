@@ -34,6 +34,7 @@ public class AllRestaurants extends AppCompatActivity {
         ref = database.getReference();
         restsRef = ref.child("restaurants");
         restsList = new ArrayList<>();
+        lvr = (ListView)findViewById(R.id.lvr);
     }
 
     @Override
