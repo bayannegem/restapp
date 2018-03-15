@@ -1,7 +1,10 @@
 package com.example.user.restapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -12,6 +15,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.provider.MediaStore.Audio.AudioColumns.ARTIST_ID;
 
 public class AllRestaurants extends AppCompatActivity {
 
@@ -35,6 +40,7 @@ public class AllRestaurants extends AppCompatActivity {
         restsRef = ref.child("restaurants");
         restsList = new ArrayList<>();
         lvr = (ListView)findViewById(R.id.lvr);
+        lvr.setOnItemClickListener(itemClickListener);
     }
 
     @Override
@@ -60,5 +66,30 @@ public class AllRestaurants extends AppCompatActivity {
             }
         });
     }
+
+    public final static String name="name";
+    public final static String description="description";
+    public final static String phone="phone";
+    public final static String website="website";
+    public final static String faceebook="faceebook";
+    public final static String whatsapp="whatsapp";
+    public final static String location="location";
+
+    AdapterView.OnItemClickListener  itemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Restaurant rest = restsList.get(i);
+            Intent intent = new Intent(AllRestaurants.this,OneRestActivity.class);
+            intent.putExtra(name,rest.getName());
+            intent.putExtra(description,rest.getDescription());
+            intent.putExtra(phone,rest.getPhone());
+            intent.putExtra(website,rest.getWebsite());
+            intent.putExtra(faceebook,rest.getFaceebook());
+            intent.putExtra(whatsapp,rest.getWhatsapp());
+            intent.putExtra(location,rest.getLocation());
+            startActivity(intent);
+        }
+    };
+
 
 }

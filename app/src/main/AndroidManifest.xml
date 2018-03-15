@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.user.restapp">
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
 
     <application
         android:allowBackup="true"
@@ -20,7 +22,8 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".AddRestaurantActivity" />
         <activity android:name=".AllRestaurants" />
-        <activity android:name=".RestFeedActivity"></activity>
+        <activity android:name=".RestFeedActivity" />
+        <activity android:name=".OneRestActivity"></activity>
     </application>
 
 </manifest>
