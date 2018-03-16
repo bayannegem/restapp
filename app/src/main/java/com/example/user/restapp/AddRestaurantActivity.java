@@ -13,6 +13,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class AddRestaurantActivity extends AppCompatActivity {
 
@@ -24,9 +26,10 @@ public class AddRestaurantActivity extends AppCompatActivity {
     private EditText etWhatsapp;
     private EditText etLocation;
     private Button btnAddRest;
-    FirebaseDatabase database;
-    DatabaseReference ref;
-    DatabaseReference restsRef;
+    private FirebaseDatabase database;
+    private DatabaseReference ref;
+    private DatabaseReference restsRef;
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
         btnAddRest =  (Button)findViewById(R.id.btnAddRest);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         restsRef = ref.child("restaurants");
         restsRef.addValueEventListener(new ValueEventListener() {
             @Override
