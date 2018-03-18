@@ -71,7 +71,7 @@ public class AllRestaurants extends AppCompatActivity {
     public final static String description="description";
     public final static String phone="phone";
     public final static String website="website";
-    public final static String faceebook="faceebook";
+    public final static String faceebook="facebook";
     public final static String whatsapp="whatsapp";
     public final static String location="location";
 

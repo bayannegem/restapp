@@ -8,6 +8,7 @@
 
     <ImageButton
         android:id="@+id/imgbtnWhatsOne"
+        android:onClick="onClickWhatsApp"
         android:layout_width="64dp"
         android:layout_height="62dp"
         android:layout_marginBottom="8dp"
@@ -24,6 +25,7 @@
 
     <ImageButton
         android:id="@+id/imgbtnFaceOne"
+        android:onClick="openRestFBPage"
         android:layout_width="71dp"
         android:layout_height="56dp"
         android:layout_marginBottom="8dp"
@@ -86,6 +88,7 @@
 
     <ImageButton
         android:id="@+id/imgbtnPhoneOne"
+        android:onClick="onClickDialPhone"
         android:layout_width="69dp"
         android:layout_height="64dp"
         android:layout_marginBottom="8dp"

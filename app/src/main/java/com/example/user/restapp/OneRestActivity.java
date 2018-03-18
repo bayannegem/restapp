@@ -72,41 +72,21 @@ public class OneRestActivity extends AppCompatActivity {
         imgbtnFacebook.setTag(facebook);
         imgbtnWhatsapp.setTag(whatsapp);
 
-        imgbtnPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialContactPhone(phone);
-            }
-        });
-
-        imgbtnFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openRestFBPage();
-            }
-        });
-
-        imgbtnWhatsapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickWhatsApp();
-            }
-        });
     }
 
     private void dialContactPhone(final String phoneNumber) {
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
 
-    public void openRestFBPage()
+    public void openRestFBPage(View view)
     {
-        String YourPageURL = "facebook.com";//imgbtnFacebook.getTag().toString() ;
+        String YourPageURL = "http://www.facebook.com";//imgbtnFacebook.getTagya().toString() ;
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(YourPageURL));
 
         startActivity(browserIntent);
     }
 
-    public void onClickWhatsApp() {
+    public void onClickWhatsApp(View view) {
         String mPhoneNumber;
         PackageManager pm=getPackageManager();
         try {
@@ -147,4 +127,7 @@ public class OneRestActivity extends AppCompatActivity {
         return (res == PackageManager.PERMISSION_GRANTED);
     }
 
+    public void onClickDialPhone(View view) {
+        dialContactPhone(imgbtnPhone.getTag().toString());
+    }
 }
