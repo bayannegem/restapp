@@ -6,5 +6,7 @@
     <string name="missing_data">Some fields are missing or empty!</string>
     <string name="add_rest_success">You have successfully added a restaurant!</string>
 
+    <string name="name_for_component">Restaurant Name</string>
+
 
 </resources>

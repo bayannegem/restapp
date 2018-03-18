@@ -1,10 +1,15 @@
 package com.example.user.restapp;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
@@ -16,8 +21,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
+
 public class AddRestaurantActivity extends AppCompatActivity {
 
+    private static final int PICK_IMAGE_REQUEST = 234;
     private EditText etReastaurantName;
     private EditText etDescription;
     private EditText etPhone;
@@ -30,6 +38,11 @@ public class AddRestaurantActivity extends AppCompatActivity {
     private DatabaseReference ref;
     private DatabaseReference restsRef;
     private StorageReference mStorageRef;
+    private ImageView imgRest;
+
+    private Uri filePath;
+    private StorageReference storageReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +76,8 @@ public class AddRestaurantActivity extends AppCompatActivity {
 
             }
         });
+        imgRest = (ImageView) findViewById(R.id.imgAddPhoto);
+        storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     public void addRest(View view)
@@ -88,4 +103,31 @@ public class AddRestaurantActivity extends AppCompatActivity {
         }
 
     }
+
+    public void addImage(View view) {
+        showFileChooser();
+    }
+
+
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imgRest.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
