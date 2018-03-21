@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class OneRestActivity extends AppCompatActivity {
     private String facebook;
     private String whatsapp;
     private String location;
+    private String Image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,10 @@ public class OneRestActivity extends AppCompatActivity {
     public final static String REST_FACE="facebook";
     public final static String REST_WHATS="whatsapp";
     public final static String REST_LOCATE="location";
+    public final static String REST_IMAGE="Image";
+
+
+
 
     private void init() {
         name= getIntent().getStringExtra(REST_NAME);
@@ -59,18 +65,23 @@ public class OneRestActivity extends AppCompatActivity {
         facebook= getIntent().getStringExtra(REST_FACE);
         whatsapp= getIntent().getStringExtra(REST_WHATS);
         location= getIntent().getStringExtra(REST_LOCATE);
+        Image= getIntent().getStringExtra(REST_IMAGE);
+
 
         txtName = (TextView) findViewById(R.id.txtNameOne);
         txtDesc = (TextView) findViewById(R.id.txtDescOne);
         imgbtnPhone = (ImageButton)findViewById(R.id.imgbtnPhoneOne);
         imgbtnFacebook = (ImageButton)findViewById(R.id.imgbtnPhoneOne);
         imgbtnWhatsapp = (ImageButton)findViewById(R.id.imgbtnWhatsOne);
+        imgRest = findViewById(R.id.imgRest);
+
 
         txtName.setText(name);
         txtDesc.setText(description);
         imgbtnPhone.setTag(phone);
         imgbtnFacebook.setTag(facebook);
         imgbtnWhatsapp.setTag(whatsapp);
+
 
     }
 

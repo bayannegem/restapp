@@ -74,6 +74,7 @@ public class AllRestaurants extends AppCompatActivity {
     public final static String faceebook="facebook";
     public final static String whatsapp="whatsapp";
     public final static String location="location";
+    public final static String Image = "Image";
 
     AdapterView.OnItemClickListener  itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -87,6 +88,7 @@ public class AllRestaurants extends AppCompatActivity {
             intent.putExtra(faceebook,rest.getFaceebook());
             intent.putExtra(whatsapp,rest.getWhatsapp());
             intent.putExtra(location,rest.getLocation());
+            intent.putExtra(Image,rest.getImage());
             startActivity(intent);
         }
     };
