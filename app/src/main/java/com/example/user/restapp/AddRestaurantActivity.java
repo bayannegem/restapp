@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -88,7 +89,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
     }
 
-    public void addRest(View view)
+   /* public void addRest(View view)
     {
         String name = etReastaurantName.getText().toString();
         String desc = etDescription.getText().toString();
@@ -110,7 +111,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
 
-    }
+    }*/
 
     public void addImage(View view) {
         showFileChooser();
@@ -144,7 +145,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    private void uploadFile() {
+    public void addRestaurant(View view) {
         //checking if file is available
         if (filePath != null) {
             //displaying progress dialog while image is uploading
@@ -163,15 +164,38 @@ public class AddRestaurantActivity extends AppCompatActivity {
                             //dismissing the progress dialog
                             progressDialog.dismiss();
 
+                            Uri imgURL = taskSnapshot.getDownloadUrl();
+                            String downloadURL = imgURL.toString();
+
+                            String name = etReastaurantName.getText().toString();
+                            String desc = etDescription.getText().toString();
+                            String phone = etPhone.getText().toString();
+                            String web = etWebsite.getText().toString();
+                            String face = etFacebook.getText().toString();
+                            String whats = etWhatsapp.getText().toString();
+                            String locate = etLocation.getText().toString();
+                            if (!name.isEmpty() && !desc.isEmpty() && !phone.isEmpty() && !web.isEmpty() &&
+                                    !face.isEmpty() && !whats.isEmpty() && !locate.isEmpty() )
+                            {
+                                Restaurant rest = new Restaurant(name, desc, phone ,web, face, whats, locate, downloadURL);
+                                restsRef.push().setValue(rest);
+                                Toast.makeText(AddRestaurantActivity.this, R.string.add_rest_success, Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText( AddRestaurantActivity.this, R.string.missing_data,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
                             //displaying success toast
                             Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
 
                             //creating the upload object to store uploaded image details
-                            Upload upload = new Upload(etReastaurantName.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString());
+//                            Upload upload = new Upload(etReastaurantName.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString());
 
-                            //adding an upload to firebase database
+                           /* //adding an upload to firebase database
                             String uploadId = restsRef.push().getKey();
-                            restsRef.child(uploadId).setValue(upload);
+                            restsRef.child(uploadId).setValue(upload);*/
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -195,7 +219,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
     }
 
 
-    public void upload(View view) {
+/*    public void upload(View view) {
         uploadFile();
-    }
+    }*/
 }

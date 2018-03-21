@@ -1,5 +1,7 @@
 package com.example.user.restapp;
 
+import android.media.Image;
+
 /**
  * Created by USER on 07/03/2018.
  */
@@ -13,11 +15,13 @@ public class Restaurant {
     private String faceebook;
     private String whatsapp;
     private String location;
+    private String Image;
+
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, String description, String phone, String website, String faceebook, String whatsapp, String location) {
+    public Restaurant(String name, String description, String phone, String website, String faceebook, String whatsapp, String location ,String Image) {
         this.name = name;
         this.description = description;
         this.phone = phone;
@@ -25,6 +29,7 @@ public class Restaurant {
         this.faceebook = faceebook;
         this.whatsapp = whatsapp;
         this.location = location;
+        this.Image = Image;
     }
 
     public String getName() {
@@ -83,6 +88,14 @@ public class Restaurant {
         this.location = location;
     }
 
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String location) {
+        this.Image = Image;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -93,6 +106,7 @@ public class Restaurant {
                 ", faceebook='" + faceebook + '\'' +
                 ", whatsapp='" + whatsapp + '\'' +
                 ", location='" + location + '\'' +
+                ", Image='" + Image + '\'' +
                 '}';
     }
 }
