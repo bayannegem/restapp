@@ -1,5 +1,6 @@
 package com.example.user.restapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,9 +23,12 @@ public class AllRestaurants extends AppCompatActivity {
 
     DatabaseReference ref;
     DatabaseReference restsRef;
+    DatabaseReference uploadsRef;
     List<Restaurant> restsList;
     ListView lvr;
     FirebaseDatabase database;
+    private List<Upload> uploads;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,41 @@ public class AllRestaurants extends AppCompatActivity {
         restsList = new ArrayList<>();
         lvr = (ListView)findViewById(R.id.lvr);
         lvr.setOnItemClickListener(itemClickListener);
+        prepareImagesRetreivalFromFirebase();
+    }
+
+    private void prepareImagesRetreivalFromFirebase() {
+        uploads = new ArrayList<>();
+
+        //displaying progress dialog while fetching images
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+        uploadsRef = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+
+        //adding an event listener to fetch values
+        uploadsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //dismissing the progress dialog
+                progressDialog.dismiss();
+
+                //iterating through all the values in database
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Upload upload = postSnapshot.getValue(Upload.class);
+                    uploads.add(upload);
+                }
+                //creating adapter
+                //adapter = new MyAdapter(getApplicationContext(), uploads);
+
+                //adding adapter to recyclerview
+                //recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                progressDialog.dismiss();
+            }
+        });
     }
 
     @Override
@@ -71,7 +110,7 @@ public class AllRestaurants extends AppCompatActivity {
     public final static String description="description";
     public final static String phone="phone";
     public final static String website="website";
-    public final static String faceebook="facebook";
+    public final static String facebook="facebook";
     public final static String whatsapp="whatsapp";
     public final static String location="location";
 
@@ -84,7 +123,7 @@ public class AllRestaurants extends AppCompatActivity {
             intent.putExtra(description,rest.getDescription());
             intent.putExtra(phone,rest.getPhone());
             intent.putExtra(website,rest.getWebsite());
-            intent.putExtra(faceebook,rest.getFaceebook());
+            intent.putExtra(facebook,rest.getFaceebook());
             intent.putExtra(whatsapp,rest.getWhatsapp());
             intent.putExtra(location,rest.getLocation());
             startActivity(intent);
