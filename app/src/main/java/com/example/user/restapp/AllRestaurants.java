@@ -45,6 +45,7 @@ public class AllRestaurants extends AppCompatActivity {
         restsList = new ArrayList<>();
         lvr = (ListView)findViewById(R.id.lvr);
         lvr.setOnItemClickListener(itemClickListener);
+        //progressDialog = (ProgressDialog) findViewById(R.id.progressBar);
         prepareImagesRetreivalFromFirebase();
     }
 
@@ -52,8 +53,8 @@ public class AllRestaurants extends AppCompatActivity {
         uploads = new ArrayList<>();
 
         //displaying progress dialog while fetching images
-        progressDialog.setMessage("Please wait...");
-        progressDialog.show();
+        //progressDialog.setMessage("Please wait...");
+        //progressDialog.show();
         uploadsRef = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
         //adding an event listener to fetch values
@@ -61,7 +62,7 @@ public class AllRestaurants extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
-                progressDialog.dismiss();
+                //progressDialog.dismiss();
 
                 //iterating through all the values in database
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
@@ -113,7 +114,7 @@ public class AllRestaurants extends AppCompatActivity {
     public final static String facebook="facebook";
     public final static String whatsapp="whatsapp";
     public final static String location="location";
-    public final static String Image = "Image";
+    public final static String image = "image";
 
     AdapterView.OnItemClickListener  itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -127,7 +128,7 @@ public class AllRestaurants extends AppCompatActivity {
             intent.putExtra(facebook,rest.getFaceebook());
             intent.putExtra(whatsapp,rest.getWhatsapp());
             intent.putExtra(location,rest.getLocation());
-            intent.putExtra(Image,rest.getImage());
+            intent.putExtra(image,rest.getImage());
             startActivity(intent);
         }
     };

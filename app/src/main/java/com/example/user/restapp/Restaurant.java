@@ -15,13 +15,12 @@ public class Restaurant {
     private String faceebook;
     private String whatsapp;
     private String location;
-    private String Image;
-
+    private String image;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, String description, String phone, String website, String faceebook, String whatsapp, String location ,String Image) {
+    public Restaurant(String name, String description, String phone, String website, String faceebook, String whatsapp, String location, String image) {
         this.name = name;
         this.description = description;
         this.phone = phone;
@@ -29,7 +28,7 @@ public class Restaurant {
         this.faceebook = faceebook;
         this.whatsapp = whatsapp;
         this.location = location;
-        this.Image = Image;
+        this.image = image;
     }
 
     public String getName() {
@@ -89,11 +88,11 @@ public class Restaurant {
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
-    public void setImage(String location) {
-        this.Image = Image;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -106,7 +105,7 @@ public class Restaurant {
                 ", faceebook='" + faceebook + '\'' +
                 ", whatsapp='" + whatsapp + '\'' +
                 ", location='" + location + '\'' +
-                ", Image='" + Image + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

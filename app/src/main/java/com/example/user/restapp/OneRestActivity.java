@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.security.Permission;
 
 public class OneRestActivity extends AppCompatActivity {
@@ -35,7 +37,7 @@ public class OneRestActivity extends AppCompatActivity {
     private String facebook;
     private String whatsapp;
     private String location;
-    private String Image;
+    private String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +54,7 @@ public class OneRestActivity extends AppCompatActivity {
     public final static String REST_FACE="facebook";
     public final static String REST_WHATS="whatsapp";
     public final static String REST_LOCATE="location";
-    public final static String REST_IMAGE="Image";
-
-
+    public final static String REST_IMAGE="image";
 
 
     private void init() {
@@ -65,7 +65,7 @@ public class OneRestActivity extends AppCompatActivity {
         facebook= getIntent().getStringExtra(REST_FACE);
         whatsapp= getIntent().getStringExtra(REST_WHATS);
         location= getIntent().getStringExtra(REST_LOCATE);
-        Image= getIntent().getStringExtra(REST_IMAGE);
+        image= getIntent().getStringExtra(REST_IMAGE);
 
 
         txtName = (TextView) findViewById(R.id.txtNameOne);
@@ -74,7 +74,7 @@ public class OneRestActivity extends AppCompatActivity {
         imgbtnFacebook = (ImageButton)findViewById(R.id.imgbtnPhoneOne);
         imgbtnWhatsapp = (ImageButton)findViewById(R.id.imgbtnWhatsOne);
         imgRest = findViewById(R.id.imgRest);
-
+        Picasso.with(getApplicationContext()).load(image).into(imgRest);
 
         txtName.setText(name);
         txtDesc.setText(description);
