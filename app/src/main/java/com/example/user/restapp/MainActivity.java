@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            //Log.w(TAG, "signInWithEmail:failed", task.getException());
+                            //Log.w(TAG, "signInWithEmail:fdfgailed", task.getException());
                             Toast.makeText( MainActivity.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
                         }
