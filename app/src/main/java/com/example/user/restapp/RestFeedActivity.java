@@ -91,7 +91,7 @@ public class RestFeedActivity extends AppCompatActivity {
             }
             i++;
         }
-    }
+    }/*
 
     @Override
     protected void onStart() {
@@ -116,7 +116,7 @@ public class RestFeedActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
     public void gotoAllRests(View view) {
 
         Intent i = new Intent(this, AllRestaurants.class);
