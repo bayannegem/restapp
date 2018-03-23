@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        if (mAuth.getCurrentUser() != null)
+        {
+            Intent i = new Intent(MainActivity.this, RestFeedActivity.class);
+            startActivity(i);
+        }
+
     }
 
     @Override
