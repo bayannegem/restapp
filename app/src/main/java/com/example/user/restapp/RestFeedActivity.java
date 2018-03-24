@@ -4,6 +4,7 @@ package com.example.user.restapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,20 +47,22 @@ public class RestFeedActivity extends AppCompatActivity {
     }
 
     private void init() {
+
         btnAddRest = (Button)findViewById(R.id.btnAddRest);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
         restsRef = ref.child("restaurants");
         restsList = new ArrayList<>();
-        lvr = (ListView)findViewById(R.id.lvr);
+        lvr = (ListView)findViewById(R.id.listViewSearch);
         Search = (EditText) findViewById(R.id.searchView);
-        //lvr.setOnItemClickListener(itemClickListener);
+        lvr.setOnItemClickListener(itemClickListener);
+
+
         btnAddRest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(RestFeedActivity.this, AddRestaurantActivity.class);
                 startActivity(i);
-
 
             }
         });
@@ -80,34 +85,25 @@ public class RestFeedActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void SearchList(String s,List<Restaurant> allusers) {
-        List2.clear();
-        int i = 0;
-        for (Restaurant restaurant : allusers) {
-            if (restaurant.getName().contains(s)) {
-                List2.add(restaurant);
-            }
-            i++;
-        }
-    }/*
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         restsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                restsList.clear();
-                for (DataSnapshot artistSnapShot:dataSnapshot.getChildren()){
-                    Restaurant rest = artistSnapShot.getValue(Restaurant.class);
-                    restsList.add(rest);
-                }
+                try {
+                    restsList.clear();
+                    for (DataSnapshot artistSnapShot : dataSnapshot.getChildren()) {
+                        Restaurant rest = artistSnapShot.getValue(Restaurant.class);
+                        restsList.add(rest);
+                    }
 
-                RestList adapter = new RestList(RestFeedActivity.this,restsList);
-                lvr.setAdapter(adapter);
+                    RestList adapter = new RestList(RestFeedActivity.this, restsList);
+                    lvr.setAdapter(adapter);
+                }
+                catch(Exception ex)
+                {
+                    Log.e("onDataChange", ex.getMessage());
+                    Toast.makeText(RestFeedActivity.this, ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
@@ -115,8 +111,34 @@ public class RestFeedActivity extends AppCompatActivity {
 
             }
         });
+
     }
-*/
+
+    public void SearchList(String s, List<Restaurant> allusers) {
+        List2.clear();
+        int i = 0;
+        for (Restaurant restaurant : allusers) {
+            if (restaurant.getName().toLowerCase().contains(s.toLowerCase()) ||
+                    restaurant.getDescription().toLowerCase().contains(s.toLowerCase()) ||
+                    restaurant.getName().toLowerCase().contains(s.toLowerCase()) ||
+                    restaurant.getFaceebook().contains(s.toLowerCase()) ||
+                    restaurant.getWebsite().contains(s.toLowerCase()) ||
+                    restaurant.getLocation().contains(s.toLowerCase())) {
+                List2.add(restaurant);
+            }
+            i++;
+        }
+
+        RestList adapter = new RestList(RestFeedActivity.this, List2);
+        lvr.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
     public void gotoAllRests(View view) {
 
         Intent i = new Intent(this, AllRestaurants.class);
