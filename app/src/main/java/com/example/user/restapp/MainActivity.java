@@ -90,20 +90,14 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                        //Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                        Intent i = new Intent(MainActivity.this, RestFeedActivity.class);
-                        startActivity(i);
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            //Log.w(TAG, "signInWithEmail:fdfgailed", task.getException());
+                        if (task.isSuccessful()) {
+                            Intent i = new Intent(MainActivity.this, RestFeedActivity.class);
+                            startActivity(i);
+                        }
+                        else {
                             Toast.makeText( MainActivity.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
                         }
-
-                        // ...
                     }
                 });
     }
