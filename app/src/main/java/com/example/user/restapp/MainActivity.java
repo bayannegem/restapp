@@ -33,7 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         etUsername = (EditText)findViewById(R.id.etUsername);
         etPassword = (EditText)findViewById(R.id.etPassword);
-        btnSignin = (Button)findViewById(R.id.btnSignin);
+        btnSignin = (Button)findViewById(R.id.btnLogIn2);
+        btnSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoHome(view);
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         mAuthListener =  new FirebaseAuth.AuthStateListener() {
             @Override
@@ -72,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
     public void gotoHome(View view) {
         String user;
         String pass;

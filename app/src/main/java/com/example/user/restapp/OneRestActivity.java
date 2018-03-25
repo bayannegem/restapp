@@ -97,7 +97,7 @@ public class OneRestActivity extends AppCompatActivity {
         startActivity(browserIntent);
     }
 
-    public void onClickWhatsApp(View view) {
+    public void onClickWhatsApp(View view) {/*
         String mPhoneNumber;
         PackageManager pm=getPackageManager();
         try {
@@ -129,6 +129,15 @@ public class OneRestActivity extends AppCompatActivity {
             Toast.makeText(this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
                     .show();
         }
+        */
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello, I want to book a table in your restaurant");
+        sendIntent.setType("text/plain");
+        sendIntent.setPackage("com.whatsapp");
+        startActivity(sendIntent);
+
+
     }
 
     private boolean checkReadPhoneStatePermission()
